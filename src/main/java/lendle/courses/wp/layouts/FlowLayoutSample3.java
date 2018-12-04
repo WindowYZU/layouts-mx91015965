@@ -6,6 +6,7 @@
 package lendle.courses.wp.layouts;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +14,7 @@ import java.net.FileNameMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -31,8 +33,21 @@ public class FlowLayoutSample3 {
         frame.setSize(500, 500);
         BorderLayout layout=new BorderLayout();
         frame.setLayout(layout);
-        JPanel container=new JPanel();
-        frame.add(container, "Center");
+        JScrollPane scroll=new JScrollPane();
+        JPanel container=new JPanel(){
+            @Override
+            public  Dimension getPreferredSize(){
+                int count=this.getComponentCount();
+                if(count>0){
+                    int total=count*this.getComponent(0).getPreferredSize().width;
+                    int row=(int) Math.ceil(total/500);
+                    return new Dimension(500,this.getComponent(0).getPreferredSize().height*row+20*(row));
+                }
+            return new Dimension(500,1);
+            }
+        };
+        scroll.getViewport().add(container);
+        frame.add(scroll,"Center");
         
         JButton clickButton=new JButton("Click!");
         frame.add(clickButton,"South");
