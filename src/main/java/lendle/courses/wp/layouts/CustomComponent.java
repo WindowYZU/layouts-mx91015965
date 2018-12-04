@@ -5,6 +5,8 @@
  */
 package lendle.courses.wp.layouts;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author lendle
@@ -63,4 +65,8 @@ public class CustomComponent extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    void preferredSize(Dimension dimension) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
